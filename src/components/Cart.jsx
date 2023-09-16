@@ -1,7 +1,20 @@
 // import { useState } from "react"
 
+import { useState } from "react"
+
 const Cart = ({ cart }) => {
-  // console.log(cart);
+  const [count, setCount] = useState(1)
+
+  const handleCountPlus = (count) => {
+    let newCount = count + 1
+    setCount(newCount)
+  }
+  const handleCountMinus = (count) => {
+    let newCount = count - 1
+    setCount(newCount)
+  }
+  
+
   return (
     <div>
       {
@@ -15,18 +28,20 @@ const Cart = ({ cart }) => {
               </div>
             </div>
             <div className="text-center ">
-              <button className="border-none text-3xl px-1 py-1 hover:bg-slate-100 ">+</button>
-              <p className="text-xl">5</p>
-              <button className="border-none text-3xl px-1 py-1 hover:bg-slate-100">-</button>
+              <button onClick={() => handleCountPlus(count)} className="border-none text-3xl px-1 py-1 hover:bg-slate-100 ">+</button>
+              <p className="text-xl">{count}</p>
+              <button onClick={() => handleCountMinus(count)} className="border-none text-3xl px-1 py-1 hover:bg-slate-100">-</button>
             </div>
           </div>          
         ))
       }
       {/* total price */}
-      <div className="flex justify-between items-center border-t-2 border-gray-700 text-xl">         
+      <div className="mt-20 flex justify-between items-center border-t-2 border-gray-700 text-xl">         
         <p>Total Price:</p>
         <p>0000</p>
       </div>
+      {/* proceed to order btn */}
+      <button className='border-2 border-orange-500 text-orange-500 p-1 rounded-lg hover:bg-orange-600 hover:text-white cursor-pointer w-full text-xl mt-5'>Confirm Order</button>
     </div>
   )
 }

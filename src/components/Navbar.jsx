@@ -14,7 +14,7 @@ const Navbar = ({ cart }) => {
   
 
   return (
-    <div className='max-w-[1640px] mx-auto flex justify-between items-center p-4 sticky top-0 z-10 bg-white'>
+    <div className='max-w-[1640px] mx-auto flex justify-between items-center p-4 sticky top-0 z-10 bg-white/90'>
       {/* left side */}
       <div className='flex items-center'>
         <div onClick={() => setNav(!nav)} className='cursor-pointer'>
