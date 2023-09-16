@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { data } from '../data/data'
-const FoodUI = () => {
+
+const FoodUI = ({ handleCart }) => {
   const [foods, setFoods] = useState(data)
 
   const filterType = (category) => {
@@ -51,13 +52,18 @@ const FoodUI = () => {
       <div className='grid  grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-4 rounded-lg'>
         {foods.map((food, index) => (
           <div key={index} className=' border shadow-lg hover:scale-105 duration-300'>
-            <img src={food.image} alt={food.name} 
-              className='w-full h-[200px] object-cover rounded-t-lg '
-            />
+            <div className='relative'>
+              <img src={food.image} alt={food.name} 
+                className='w-full h-[200px] object-cover rounded-t-lg'
+              />
+              <p>
+                <span className='absolute right-2 bottom-4  bg-orange-500 text-white p-1 rounded'>{food.price}</span>
+              </p>
+            </div>
             <div className='flex justify-between px-2 py-4 '>
               <p className='font-bold'>{food.name}</p>
               <p>
-                <span className='bg-orange-500 text-white p-1 rounded'>{food.price}</span>
+                <span onClick={() => handleCart(food)} className='border-2 border-orange-500 text-orange-500 p-1 rounded-lg hover:bg-orange-600 hover:text-white cursor-pointer'>Order Now</span>
               </p>
             </div>
           </div>
