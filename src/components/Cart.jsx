@@ -1,10 +1,10 @@
-// import { useState } from "react"
-
-import { useEffect, useState } from "react"
+import {  useEffect, useState } from "react"
 
 const Cart = ({ cart }) => {
-  const [count, setCount] = useState({})
-  console.log((count));
+  const [count, setCount] = useState({});
+  const [price, setPrice] = useState([]);
+  const [totalPrice, setTotalPrice] = useState([]);
+  console.log(price);
 
   const handleCountPlus = (id) => {
     let currentCount = count[id] || 1
@@ -23,6 +23,20 @@ const Cart = ({ cart }) => {
       [id]: newCount,
     }))
   }
+  
+  useEffect(() => {
+    let newPrices = {}
+    cart.forEach((item) => {
+      const id = item.id
+      if (count[id] !== undefined) {
+        let newPrice = item.price * count[id]
+        newPrices[id] = newPrice.toFixed(2)
+      }              
+    })
+    setPrice(newPrices)
+  },[cart, count])
+
+
 
   return (
     <div>
@@ -33,7 +47,9 @@ const Cart = ({ cart }) => {
               <img className="h-[70px] w-[70px]" src={cartItem.image} alt={cartItem.name} />
               <div>
                 <h2 className="text-xl font-bold">{cartItem.name}</h2>
-                <p className="font-semibold">Price: $ {cartItem.price}</p>
+                {/* same result can be done by both ternary operaor and useEffect */}
+                {/* {cartItem.price * (count[cartItem.id] !== undefined ? count[cartItem.id] : 1)} */}
+                <p className="font-semibold">Price: $ {price[cartItem.id] !== undefined ? price[cartItem.id] : cartItem.price} </p>
               </div>
             </div>
             <div className="text-center ">
