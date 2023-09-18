@@ -14,7 +14,7 @@ const FoodUI = ({ handleCart }) => {
   const filterPrice = (price) => {
     setFoods(
       data.filter((food) => {
-        return food.price === price
+        return food.price <=price
       })
     )
   }
@@ -39,12 +39,12 @@ const FoodUI = ({ handleCart }) => {
         </div>
         {/* filter row */}
         <div>
-          <p className='font-bold text-gray-700 text-xl'>Filter Price</p>
+          <p className='font-bold text-gray-700 text-xl'>Filter Price Under</p>
           <div>
-            <button onClick={() => filterPrice('$')} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>$</button>
-            <button onClick={() => filterPrice('$$')} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>$$</button>
-            <button onClick={() => filterPrice('$$$')} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>$$$</button>
-            <button onClick={() => filterPrice('$$$$')} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>$$$$</button>
+            <button onClick={() => filterPrice(50)} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>$ 50</button>
+            <button onClick={() => filterPrice(80)} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>$ 80</button>
+            <button onClick={() => filterPrice(100)} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>$ 100</button>
+            <button onClick={() => filterPrice(150)} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>$ 150</button>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ const FoodUI = ({ handleCart }) => {
                 className='w-full h-[200px] object-cover rounded-t-lg'
               />
               <p>
-                <span className='absolute right-2 bottom-4  bg-orange-500 text-white p-1 rounded'>{food.price}</span>
+                <span className='absolute right-2 bottom-4  bg-orange-500 text-white p-1 rounded w-[50px] text-center'>$ {food.price}</span>
               </p>
             </div>
             <div className='flex justify-between px-2 py-4 '>

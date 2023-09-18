@@ -6,15 +6,6 @@ const Cart = ({ cart }) => {
   const [count, setCount] = useState({})
   console.log((count));
 
-  // useEffect(() => {    
-  //   const initialCounts = {}
-
-  //   cart.forEach((item) => {
-  //     initialCounts[item.id] = count[item.id] < 2 ? 1 : count[item.id];      
-  //   });
-  //   setCount(initialCounts)     
-  // }, [cart])
-
   const handleCountPlus = (id) => {
     let currentCount = count[id] || 1
     let newCount = currentCount + 1
