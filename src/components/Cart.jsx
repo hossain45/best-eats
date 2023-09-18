@@ -1,19 +1,37 @@
 // import { useState } from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const Cart = ({ cart }) => {
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState({})
+  console.log((count));
 
-  const handleCountPlus = (count) => {
-    let newCount = count + 1
-    setCount(newCount)
+  // useEffect(() => {    
+  //   const initialCounts = {}
+
+  //   cart.forEach((item) => {
+  //     initialCounts[item.id] = count[item.id] < 2 ? 1 : count[item.id];      
+  //   });
+  //   setCount(initialCounts)     
+  // }, [cart])
+
+  const handleCountPlus = (id) => {
+    let currentCount = count[id] || 1
+    let newCount = currentCount + 1
+    setCount((prevCount) => ({
+      ...prevCount,
+      [id]: newCount,
+    }))
   }
-  const handleCountMinus = (count) => {
-    let newCount = count - 1
-    setCount(newCount)
+  const handleCountMinus = (id) => {
+    let currentCount = count[id] || 0
+    if(currentCount === 0) return
+    let newCount = currentCount - 1
+    setCount((prevCount) => ({
+      ...prevCount,
+      [id]: newCount,
+    }))
   }
-  
 
   return (
     <div>
@@ -28,9 +46,9 @@ const Cart = ({ cart }) => {
               </div>
             </div>
             <div className="text-center ">
-              <button onClick={() => handleCountPlus(count)} className="border-none text-3xl px-1 py-1 hover:bg-slate-100 ">+</button>
-              <p className="text-xl">{count}</p>
-              <button onClick={() => handleCountMinus(count)} className="border-none text-3xl px-1 py-1 hover:bg-slate-100">-</button>
+              <button onClick={() => handleCountPlus(cartItem.id)} className="border-none text-3xl px-1 py-1 hover:bg-slate-100 ">+</button>
+              <p className="text-xl">{count[cartItem.id] !== undefined ? count[cartItem.id] : 1}</p>
+              <button onClick={() => handleCountMinus(cartItem.id)} className="border-none text-3xl px-1 py-1 hover:bg-slate-100">-</button>
             </div>
           </div>          
         ))
