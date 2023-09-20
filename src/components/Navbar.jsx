@@ -6,7 +6,8 @@ import { MdFavorite, MdHelp } from 'react-icons/md'
 import { FaUserFriends, FaWallet } from 'react-icons/fa'
 import Cart from './Cart'
 
-const Navbar = ({ cart }) => {
+// eslint-disable-next-line react/prop-types
+const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPrice }) => {
   // state for menu bar
   const [nav, setNav] = useState(false)
   // state for cart drawer
@@ -99,7 +100,14 @@ const Navbar = ({ cart }) => {
           <div>
             <ul className='flex flex-col p-4 text-gray-900'>
 
-              <Cart cart={cart}/>
+              <Cart 
+                cart={cart}
+                count={count}
+                price={price}
+                totalPrice={totalPrice}
+                handleCountPlus={handleCountPlus}
+                handleCountMinus={handleCountMinus}
+              />
             </ul>
           </div>
         </div>

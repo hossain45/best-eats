@@ -1,48 +1,10 @@
 import {  useEffect, useState } from "react"
 
-const Cart = ({ cart }) => {
-  const [count, setCount] = useState({});
-  const [price, setPrice] = useState({});
-  const [totalPrice, setTotalPrice] = useState(0);
-  // console.log(price);
-
-  const handleCountPlus = (id) => {
-    let currentCount = count[id] || 1
-    let newCount = currentCount + 1
-    setCount((prevCount) => ({
-      ...prevCount,
-      [id]: newCount,
-    }))
-  }
-  const handleCountMinus = (id) => {
-    let currentCount = count[id] || 0
-    if(currentCount === 0) return
-    let newCount = currentCount - 1
-    setCount((prevCount) => ({
-      ...prevCount,
-      [id]: newCount,
-    }))
-  }
+// eslint-disable-next-line react/prop-types
+const Cart = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPrice }) => {
   
-  useEffect(() => {
-    let newPrices = {}
-    cart.forEach((item) => {
-      const id = item.id
-      if (count[id] !== undefined) {
-        let newPrice = item.price * count[id]
-        newPrices[id] = newPrice.toFixed(2)
-      }              
-    })
-    setPrice(newPrices)
-  },[cart, count])
-
-  useEffect(() => {
-    let newTotalPrice = 0;
-    Object.values(price).forEach((itemPrice) => {
-      newTotalPrice += parseFloat(itemPrice);
-    });
-    setTotalPrice(newTotalPrice.toFixed(2));
-  }, [price]);
+  
+  
 
 
   return (
@@ -56,12 +18,13 @@ const Cart = ({ cart }) => {
                 <h2 className="text-xl font-bold">{cartItem.name}</h2>
                 {/* same result can be done by both ternary operaor and useEffect */}
                 {/* {cartItem.price * (count[cartItem.id] !== undefined ? count[cartItem.id] : 1)} */}
-                <p className="font-semibold item-price">Price: $ {price[cartItem.id] !== undefined ? price[cartItem.id] : cartItem.price} </p>
+                <p className="font-semibold item-price">Price: $ {price[cartItem.id]} </p>
               </div>
             </div>
             <div className="text-center ">
               <button onClick={() => handleCountPlus(cartItem.id)} className="border-none text-3xl px-1 py-1 hover:bg-slate-100 ">+</button>
-              <p className="text-xl ">{count[cartItem.id] !== undefined ? count[cartItem.id] : 1}</p>
+              {/* <p className="text-xl ">{count[cartItem.id] !== undefined ? count[cartItem.id] : 1}</p> */}
+              <p className="text-xl ">{count[cartItem.id]}</p>
               <button onClick={() => handleCountMinus(cartItem.id)} className="border-none text-3xl px-1 py-1 hover:bg-slate-100">-</button>
             </div>
           </div>          
