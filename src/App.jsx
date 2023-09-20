@@ -32,13 +32,16 @@ function App() {
     }))
   }
   const handleCountMinus = (id) => {
-    let currentCount = count[id] || 0
-    if(currentCount === 0) return
-    let newCount = currentCount - 1
-    setCount((prevCount) => ({
-      ...prevCount,
-      [id]: newCount,
-    }))
+    let currentCount = count[id] || 1
+    if(currentCount === 1) {
+      handleDelete(id)
+    } else {
+      let newCount = currentCount - 1
+      setCount((prevCount) => ({
+        ...prevCount,
+        [id]: newCount,
+      }))
+    }
   }
   useEffect(() => {
     let newPrices = {}
@@ -57,6 +60,13 @@ function App() {
     });
     setTotalPrice(newTotalPrice.toFixed(2));
   }, [price]);
+
+  const handleDelete = (cartId) => {
+    let newCart = [...cart]  
+    newCart = newCart.filter((item) => item.id !== cartId)
+    setCart(newCart)
+  }
+
   return (
     <>
       <Navbar 
@@ -67,6 +77,7 @@ function App() {
         totalPrice={totalPrice}
         handleCountPlus={handleCountPlus}
         handleCountMinus={handleCountMinus}
+        handleDelete={handleDelete}
       />
       <Hero />
       <HeadlineCards />

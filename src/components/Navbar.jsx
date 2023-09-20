@@ -7,7 +7,7 @@ import { FaUserFriends, FaWallet } from 'react-icons/fa'
 import Cart from './Cart'
 
 // eslint-disable-next-line react/prop-types
-const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPrice }) => {
+const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPrice, handleDelete }) => {
   // state for menu bar
   const [nav, setNav] = useState(false)
   // state for cart drawer
@@ -107,6 +107,7 @@ const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPr
                 totalPrice={totalPrice}
                 handleCountPlus={handleCountPlus}
                 handleCountMinus={handleCountMinus}
+                handleDelete={handleDelete}
               />
             </ul>
           </div>
