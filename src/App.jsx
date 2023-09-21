@@ -3,6 +3,8 @@ import FoodUI from "./components/FoodUI"
 import HeadlineCards from "./components/HeadlineCards"
 import Hero from "./components/Hero"
 import Navbar from "./components/Navbar"
+import { Outlet } from "react-router-dom"
+import Footer from "./components/Footer"
 
 function App() {
   // state for cart item handling 
@@ -20,6 +22,7 @@ function App() {
     } else {
       setCart(newCart)
       handleCountPlus(food.id)
+      // localStorage.setItem('cart', JSON.stringify(cart))
     }
   }
   
@@ -79,11 +82,13 @@ function App() {
         handleCountMinus={handleCountMinus}
         handleDelete={handleDelete}
       />
+      <Outlet />
       <Hero />
       <HeadlineCards />
       <FoodUI 
         handleCart={handleCart}
       />
+      <Footer />
     </>
   )
 }

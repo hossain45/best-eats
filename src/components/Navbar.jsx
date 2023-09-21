@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { AiFillTag, AiOutlineClose, AiOutlineMenu, AiOutlineSearch } from 'react-icons/ai'
-import { BsFillCartFill, BsFillSaveFill } from 'react-icons/bs'
+import { BsFillCartFill, BsFillInfoSquareFill, BsFillSaveFill } from 'react-icons/bs'
 import { TbTruckDelivery } from 'react-icons/tb'
 import { MdFavorite, MdHelp } from 'react-icons/md'
 import { FaUserFriends, FaWallet } from 'react-icons/fa'
 import Cart from './Cart'
+import { Link } from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
 const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPrice, handleDelete }) => {
@@ -78,6 +79,11 @@ const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPr
               <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
                 <FaUserFriends size={25} className='mr-4'/> Invite Friends
               </li>
+              <Link to='/about'>
+                <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5' onClick={() => setNav(!nav)}>
+                  <BsFillInfoSquareFill size={25} className='mr-4 '/> About Us
+                </li>
+              </Link>
             </ul>
           </nav>
         </div> 
