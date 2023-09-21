@@ -22,9 +22,11 @@ const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPr
         <div onClick={() => setNav(!nav)} className='cursor-pointer'>
           <AiOutlineMenu size={30}/>
         </div>
-        <h1 className='text-2xl sm:text-3xl lg:text-4xl px-2 '>
-          Best <span className='font-bold '>Eats</span>
-        </h1>
+        <Link to='/'>
+          <h1 className='text-2xl sm:text-3xl lg:text-4xl px-2 '>
+            Best <span className='font-bold '>Eats</span>
+          </h1>
+        </Link>        
         <div className='hidden md:flex items-center bg-gray-200 rounded-full p-1 text-[14px]'>
           <p className='bg-black text-white rounded-full p-2'>Delivery </p>
           <p className='p-2'>Pickup</p>
@@ -32,13 +34,13 @@ const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPr
       </div>
       {/* right side */}
       {/* search input */}
-      <div className='bg-gray-200 rounded-full flex items-center px-2 w-[200px] sm:w-[400px] lg:w-[500px]'>
+      <div className='bg-gray-200 rounded-full flex items-center px-2 w-[100px] sm:w-[300px] lg:w-[500px]'>
         <AiOutlineSearch size={20}/>
         <input type="text" placeholder='Search food...' className='bg-transparent p-2 focus:outline-none w-full'/>
       </div>
       {/* cart btn */}
-      <button onClick={() => setSection(!section)} className='bg-black text-white hidden md:flex items-center py-2 rounded-full'>  
-        <BsFillCartFill size={20} className='mr-2'/> Cart
+      <button onClick={() => setSection(!section)} className='bg-black text-white sm:flex items-center py-2 rounded-full'>  
+        <BsFillCartFill size={20} className='sm:mr-2'/> <span className='hidden sm:flex'> Cart</span>
       </button>
 
       {/* mobile menuu */}

@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react"
-import FoodUI from "./components/FoodUI"
-import HeadlineCards from "./components/HeadlineCards"
-import Hero from "./components/Hero"
 import Navbar from "./components/Navbar"
-import { Outlet } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom'
 import Footer from "./components/Footer"
+import About from "./components/About"
+import Home from "./components/Home"
 
 function App() {
   // state for cart item handling 
@@ -72,8 +71,7 @@ function App() {
 
   return (
     <>
-      <Navbar 
-        
+      <Navbar         
         cart={cart}
         count={count}
         price={price}
@@ -82,12 +80,10 @@ function App() {
         handleCountMinus={handleCountMinus}
         handleDelete={handleDelete}
       />
-      <Outlet />
-      <Hero />
-      <HeadlineCards />
-      <FoodUI 
-        handleCart={handleCart}
-      />
+      <Routes>                
+        <Route path='/' element={<Home handleCart={handleCart}/>} />
+        <Route path='/about' element={<About />}/>          
+      </Routes>
       <Footer />
     </>
   )
