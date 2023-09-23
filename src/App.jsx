@@ -2,6 +2,8 @@ import { useState, useEffect, createContext } from "react"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import { Outlet } from "react-router"
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 export const HandleCartContext = createContext();
 
 function App() {
@@ -15,9 +17,38 @@ function App() {
     let newCart = [...cart, food]
     const isAdded = cart.find((newCartItem) => food.id === newCartItem.id)
     if(isAdded){
-      alert('already added to the cart')
+      // alert('already added to the cart')
+      Toastify({
+        text: "Already added to the cart",
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        onClick: function(){} 
+      }).showToast();
       return
     } else {
+      Toastify({
+        text: `${food.name} added to the cart`,
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #FF6600, #FF9900)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+      
       setCart(newCart)
       handleCountPlus(food.id)
       // localStorage.setItem('cart', JSON.stringify(cart))
