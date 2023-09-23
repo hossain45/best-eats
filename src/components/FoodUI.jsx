@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const FoodUI = ({ foodsData }) => {
   const [foods, setFoods] = useState(foodsData)
   const handleCart = useContext(HandleCartContext)
-  // console.log(handleCart);
+
   const filterType = (category) => {
     setFoods(
       foodsData.filter((food) => {
@@ -63,7 +63,7 @@ const FoodUI = ({ foodsData }) => {
                 <span className='absolute right-2 bottom-4  bg-orange-500 text-white p-1 rounded w-[50px] text-center opacity-100 duration-300 group-hover:opacity-0'>$ {food.price}</span>
               </p>
               <p>
-                <Link to={`/:${food.id}`}>
+                <Link to={`/${food.id}`}>
                   <span className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ms-transform bg-orange-500 text-white p-1 rounded w-[50px] text-center opacity-0 duration-300 group-hover:opacity-100'>View</span>
                 </Link>              
               </p>

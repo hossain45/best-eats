@@ -36,7 +36,21 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: '/:{id}',
+        path: '/:id',
+        loader: async ({ params }) => {
+          try {
+            const { id } = params;
+            const response = await fetch(`https://api.npoint.io/c27300f0620e5a1c6166/${id}`);
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            return data;
+          } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error; // Rethrow the error to indicate a failed route load
+          }
+        },
         element: <Food />,
       },
     ],

@@ -8,6 +8,7 @@ import Hero from "./Hero"
 const Home = () => {
 
   const foodsData = useLoaderData();
+
   return (
     <>
       <Hero />
