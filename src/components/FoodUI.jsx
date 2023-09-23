@@ -6,19 +6,24 @@ const FoodUI = ({ foodsData }) => {
   const [foods, setFoods] = useState(foodsData)
   const handleCart = useContext(HandleCartContext)
 
-  const filterType = (category) => {
-    setFoods(
-      foodsData.filter((food) => {
-        return food.category === category
-      })
-    )
+  const filterType = (category) => {    
+    let filteredType = foodsData.filter((food) => {
+      return food.category === category        
+    })
+    filteredType.sort((a, b) => {     
+      return a.price - b.price;
+    });
+    setFoods(filteredType)
   }
-  const filterPrice = (price) => {
-    setFoods(
-      foodsData.filter((food) => {
-        return food.price <=price
-      })
-    )
+
+  const filterPrice = (price) => {    
+    let filteredPrice = foodsData.filter((food) => {
+      return food.price <=price       
+    })
+    filteredPrice.sort((a, b) => {     
+        return a.price - b.price;
+    });
+    setFoods(filteredPrice);
   }
 
   return (
