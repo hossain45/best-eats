@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { data } from '../data/data'
 
-const FoodUI = ({ handleCart }) => {
+const FoodUI = ({ handleCart, foodsData }) => {
   const [foods, setFoods] = useState(data)
-
+  console.log(foodsData);
   const filterType = (category) => {
     setFoods(
       data.filter((food) => {

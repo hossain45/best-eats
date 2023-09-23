@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import Navbar from "./components/Navbar"
-import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom'
+import { BrowserRouter as Routes, Route } from 'react-router-dom'
 import Footer from "./components/Footer"
 import About from "./components/About"
 import Home from "./components/Home"
@@ -81,7 +81,10 @@ function App() {
         handleDelete={handleDelete}
       />
       <Routes>                
-        <Route path='/' element={<Home handleCart={handleCart}/>} />
+        <Route 
+          path='/'   
+          
+          element={<Home handleCart={handleCart}/>} />
         <Route path='/about' element={<About />}/>          
       </Routes>
       <Footer />
