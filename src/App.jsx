@@ -5,14 +5,58 @@ import { Outlet } from "react-router"
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
 export const HandleCartContext = createContext();
+export const HandleFavouriteContext = createContext();
+export const FavouriteItemsContext = createContext();
 
 function App() {
   // state for cart item handling 
   const [cart, setCart] = useState([])
+  const [favourite, setFavourite] = useState([])
   const [count, setCount] = useState({});
   const [price, setPrice] = useState({});
   const [totalPrice, setTotalPrice] = useState(0);
     
+  const handleFavourite = (food) => {
+    let newFavourite = [...favourite, food]
+    const isAdded = favourite.find(
+      (newFavouriteItem) => food.id === newFavouriteItem.id
+    );
+    if(isAdded){
+      Toastify({
+        text: "Already added to the FAVOURITES",
+        duration: 1000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", 
+        position: "center", 
+        stopOnFocus: true, 
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        onClick: function(){} 
+      }).showToast();
+      return
+    } else {
+      Toastify({
+        text: `${food.name} added to the FAVOURITE`,
+        duration: 1000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", 
+        position: "right", 
+        stopOnFocus: true, 
+        style: {
+          background: "linear-gradient(to right, #FF6600, #FF9900)",
+        },
+        onClick: function(){} 
+      }).showToast();
+      
+      setFavourite(newFavourite)
+      // localStorage.setItem('cart', JSON.stringify(cart))
+    }
+  }
   const handleCart = (food) => {
     let newCart = [...cart, food]
     const isAdded = cart.find((newCartItem) => food.id === newCartItem.id)
@@ -110,9 +154,13 @@ function App() {
         handleCountMinus={handleCountMinus}
         handleDelete={handleDelete}
       />
-      <HandleCartContext.Provider value={handleCart}>
-        <Outlet />
-      </HandleCartContext.Provider>
+      <FavouriteItemsContext.Provider value={favourite}>
+        <HandleFavouriteContext.Provider value={handleFavourite} >
+          <HandleCartContext.Provider value={handleCart}>
+            <Outlet />
+          </HandleCartContext.Provider>      
+        </HandleFavouriteContext.Provider >
+      </FavouriteItemsContext.Provider>
       <Footer />
     </>
   )

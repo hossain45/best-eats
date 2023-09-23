@@ -69,9 +69,11 @@ const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPr
               <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
                 <TbTruckDelivery size={25} className='mr-4'/> Orders
               </li>
-              <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
-                <MdFavorite size={25} className='mr-4'/> Favourites
-              </li>              
+              <Link to={'/favourite'}>
+                <li onClick={() => setNav(!nav)} className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
+                  <MdFavorite size={25} className='mr-4'/> Favourites
+                </li>              
+              </Link>
               <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
                 <MdHelp size={25} className='mr-4'/> Help 
               </li>

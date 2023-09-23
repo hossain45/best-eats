@@ -1,6 +1,6 @@
 
 // eslint-disable-next-line react/prop-types
-const Cart = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPrice, handleDelete }) => {
+const Cart = ({ cart, handleCountPlus, handleCountMinus, count, totalPrice, handleDelete }) => {
 
   return (
     <div>

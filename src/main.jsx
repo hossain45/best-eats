@@ -10,6 +10,8 @@ import {
 import Home from './components/Home.jsx';
 import Food from './components/Food.jsx';
 import Login from './components/Login.jsx';
+import Favourite from './components/Favourite.jsx';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -39,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/favourite',
+        element: <Favourite />,
       },
       {
         path: '/:id',
