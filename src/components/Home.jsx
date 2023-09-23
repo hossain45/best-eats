@@ -15,7 +15,6 @@ const Home = () => {
       <HeadlineCards />
       <FoodUI 
         foodsData={foodsData}
-        // handleCart={handleCart}
       />
     </>
   )

@@ -3,7 +3,8 @@ import { AiFillTag, AiOutlineClose, AiOutlineMenu, AiOutlineSearch } from 'react
 import { BsFillCartFill, BsFillInfoSquareFill, BsFillSaveFill } from 'react-icons/bs'
 import { TbTruckDelivery } from 'react-icons/tb'
 import { MdFavorite, MdHelp } from 'react-icons/md'
-import { FaUserFriends, FaWallet } from 'react-icons/fa'
+import { FaUserFriends } from 'react-icons/fa'
+import { BiLogIn } from 'react-icons/bi'
 import Cart from './Cart'
 import { Link } from 'react-router-dom'
 
@@ -24,7 +25,7 @@ const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPr
         </div>
         <Link to='/'>
           <h1 className='text-2xl sm:text-3xl lg:text-4xl px-2 '>
-            Best <span className='font-bold '>Eats</span>
+            Best <span className='font-bold'>Eats</span>
           </h1>
         </Link>        
         <div className='hidden md:flex items-center bg-gray-200 rounded-full p-1 text-[14px]'>
@@ -60,15 +61,17 @@ const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPr
           </h2>
           <nav>
             <ul className='flex flex-col p-4 text-gray-900'>
+              <Link to={'/login'}>
+                <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
+                  <BiLogIn size={25} className='mr-4'/> Login  
+                </li>
+              </Link>
               <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
                 <TbTruckDelivery size={25} className='mr-4'/> Orders
               </li>
               <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
                 <MdFavorite size={25} className='mr-4'/> Favourites
-              </li>
-              <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
-                <FaWallet size={25} className='mr-4'/> Walet 
-              </li>
+              </li>              
               <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
                 <MdHelp size={25} className='mr-4'/> Help 
               </li>
