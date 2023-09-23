@@ -62,7 +62,7 @@ const Navbar = ({ cart, handleCountPlus, handleCountMinus, count, price, totalPr
           <nav>
             <ul className='flex flex-col p-4 text-gray-900'>
               <Link to={'/login'}>
-                <li className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
+                <li onClick={() => setNav(!nav)} className='text-xl py-4 flex cursor-pointer hover:scale-110 hover:bg-black/5  '>
                   <BiLogIn size={25} className='mr-4'/> Login  
                 </li>
               </Link>

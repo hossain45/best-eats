@@ -20,7 +20,7 @@ function App() {
       // alert('already added to the cart')
       Toastify({
         text: "Already added to the cart",
-        duration: 3000,
+        duration: 1000,
         destination: "https://github.com/apvarun/toastify-js",
         newWindow: true,
         close: true,
@@ -36,7 +36,7 @@ function App() {
     } else {
       Toastify({
         text: `${food.name} added to the cart`,
-        duration: 3000,
+        duration: 1000,
         destination: "https://github.com/apvarun/toastify-js",
         newWindow: true,
         close: true,
