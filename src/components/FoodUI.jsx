@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import { HandleCartContext } from '../App'
+import { Link } from 'react-router-dom'
 
 const FoodUI = ({ foodsData }) => {
   const [foods, setFoods] = useState(foodsData)
@@ -53,12 +54,18 @@ const FoodUI = ({ foodsData }) => {
       <div className='grid  grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-4 rounded-lg'>
         {foods.map((food, index) => (
           <div key={index} className=' border shadow-lg hover:scale-105 duration-300'>
-            <div className='relative'>
+            <div className='relative group'>
+           
               <img src={food.image} alt={food.name} 
-                className='w-full h-[200px] object-cover rounded-t-lg'
+                className='w-full h-[200px] object-cover rounded-t-lg hover:opacity-80 '
               />
               <p>
-                <span className='absolute right-2 bottom-4  bg-orange-500 text-white p-1 rounded w-[50px] text-center'>$ {food.price}</span>
+                <span className='absolute right-2 bottom-4  bg-orange-500 text-white p-1 rounded w-[50px] text-center opacity-100 duration-300 group-hover:opacity-0'>$ {food.price}</span>
+              </p>
+              <p>
+                <Link to={`/:${food.id}`}>
+                  <span className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ms-transform bg-orange-500 text-white p-1 rounded w-[50px] text-center opacity-0 duration-300 group-hover:opacity-100'>View</span>
+                </Link>              
               </p>
             </div>
             <div className='flex justify-between px-2 py-4 '>
