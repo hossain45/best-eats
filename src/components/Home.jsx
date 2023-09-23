@@ -5,7 +5,7 @@ import HeadlineCards from "./HeadlineCards"
 import Hero from "./Hero"
 
 
-const Home = ({ handleCart }) => {
+const Home = () => {
 
   const foodsData = useLoaderData();
   return (
@@ -14,7 +14,7 @@ const Home = ({ handleCart }) => {
       <HeadlineCards />
       <FoodUI 
         foodsData={foodsData}
-        handleCart={handleCart}
+        // handleCart={handleCart}
       />
     </>
   )

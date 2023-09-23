@@ -1,31 +1,47 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import { BrowserRouter as Router } from "react-router-dom";
 import './index.css'
+import About from './components/About.jsx';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Home from './components/Home.jsx';
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/',
+        loader: async () => {
+          try {
+            const response = await fetch('https://api.npoint.io/c27300f0620e5a1c6166/');
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            return data;
+          } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error; // Rethrow the error to indicate a failed route load
+          }
+        },
+        element: <Home />,
+      },
+      {
+        path: '/about',
+        element: <About />,
+      },
+    ],
+  },
+])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <RouterProvider router={router}/>
   </React.StrictMode>,
 )
-// import About from './components/About.jsx';
-// import {
-//   createBrowserRouter,
-//   RouterProvider,
-// } from "react-router-dom";
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <App />,
-//     children: [
-//       {
-//         path: '/about',
-//         element: <About />,
-//       },
-//     ],
-//   },
-// ])
+
 

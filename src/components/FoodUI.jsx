@@ -1,19 +1,20 @@
-import { useState } from 'react'
-import { data } from '../data/data'
+import { useContext, useState } from 'react'
+import { HandleCartContext } from '../App'
 
-const FoodUI = ({ handleCart, foodsData }) => {
-  const [foods, setFoods] = useState(data)
-  console.log(foodsData);
+const FoodUI = ({ foodsData }) => {
+  const [foods, setFoods] = useState(foodsData)
+  const handleCart = useContext(HandleCartContext)
+  // console.log(handleCart);
   const filterType = (category) => {
     setFoods(
-      data.filter((food) => {
+      foodsData.filter((food) => {
         return food.category === category
       })
     )
   }
   const filterPrice = (price) => {
     setFoods(
-      data.filter((food) => {
+      foodsData.filter((food) => {
         return food.price <=price
       })
     )
@@ -30,7 +31,7 @@ const FoodUI = ({ handleCart, foodsData }) => {
         <div>
           <p className='font-bold text-gray-700 text-xl'>Filter Type</p>
           <div className='flex justify-center flex-wrap'>
-            <button onClick={() => setFoods(data)} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>All </button>
+            <button onClick={() => setFoods(foodsData)} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>All </button>
             <button onClick={() => filterType('burger')} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>Burgers</button>
             <button onClick={() => filterType('pizza')} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>Pizza</button>
             <button onClick={() => filterType('salad')} className='border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white m-1'>Salad</button>

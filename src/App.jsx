@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, createContext } from "react"
 import Navbar from "./components/Navbar"
-import { BrowserRouter as Routes, Route } from 'react-router-dom'
 import Footer from "./components/Footer"
-import About from "./components/About"
-import Home from "./components/Home"
+import { Outlet } from "react-router"
+export const HandleCartContext = createContext();
 
 function App() {
   // state for cart item handling 
@@ -11,7 +10,7 @@ function App() {
   const [count, setCount] = useState({});
   const [price, setPrice] = useState({});
   const [totalPrice, setTotalPrice] = useState(0);
-
+    
   const handleCart = (food) => {
     let newCart = [...cart, food]
     const isAdded = cart.find((newCartItem) => food.id === newCartItem.id)
@@ -24,7 +23,7 @@ function App() {
       // localStorage.setItem('cart', JSON.stringify(cart))
     }
   }
-  
+
   const handleCountPlus = (id) => {
     let currentCount = count[id] || 0
     let newCount = currentCount + 1
@@ -80,13 +79,9 @@ function App() {
         handleCountMinus={handleCountMinus}
         handleDelete={handleDelete}
       />
-      <Routes>                
-        <Route 
-          path='/'   
-          
-          element={<Home handleCart={handleCart}/>} />
-        <Route path='/about' element={<About />}/>          
-      </Routes>
+      <HandleCartContext.Provider value={handleCart}>
+        <Outlet />
+      </HandleCartContext.Provider>
       <Footer />
     </>
   )
