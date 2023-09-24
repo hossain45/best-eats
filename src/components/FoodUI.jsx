@@ -119,7 +119,7 @@ const FoodUI = ({ foodsData }) => {
                   $ {food.price}
                 </span>
               </p>
-              <div className="flex justify-center items-center gap-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ms-transform  opacity-0 duration-300 group-hover:opacity-100">
+              <div className="flex justify-center items-center gap-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -ms-transform  opacity-0 duration-300 group-hover:opacity-100">
                 <p>
                   <Link to={`/${food.id}`}>
                     <span className="border-2 border-orange-500 p-1 rounded-lg hover:bg-orange-600 hover:text-white cursor-pointer bg-orange-500 text-white  w-[50px] text-center opacity-0 duration-300 group-hover:opacity-100 hover:scale-110 ">
@@ -130,9 +130,9 @@ const FoodUI = ({ foodsData }) => {
                 <p>
                   <span
                     onClick={() => handleFavourite(food)}
-                    className="border-2 border-orange-500 p-1 rounded-lg hover:bg-orange-600 hover:text-white cursor-pointer bg-orange-500 text-white  w-[50px] text-center opacity-0 duration-300 group-hover:opacity-100 hover:scale-110"
+                    className="border-2 border-orange-500 p-1 rounded-lg hover:bg-orange-600 hover:text-white cursor-pointer bg-orange-500 text-white  text-center opacity-0 duration-300 group-hover:opacity-100 hover:scale-110"
                   >
-                    Add to favourite
+                    Favourite
                   </span>
                 </p>
               </div>

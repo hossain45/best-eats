@@ -59,18 +59,10 @@ function App() {
     }
   }
   
-  useEffect(() => {
-    const savedFavItems = JSON.parse(localStorage.getItem("favItems")) || [];
-    setFavourite(savedFavItems)
-  },[])
-  
-
-  
   const handleCart = (food) => {
     let newCart = [...cart, food]
     const isAdded = cart.find((newCartItem) => food.id === newCartItem.id)
     if(isAdded){
-      // alert('already added to the cart')
       Toastify({
         text: "Already added to the cart",
         duration: 1000,
@@ -104,9 +96,23 @@ function App() {
       
       setCart(newCart)
       handleCountPlus(food.id)
-      // localStorage.setItem('cart', JSON.stringify(cart))
+      localStorage.setItem("cartItems", JSON.stringify(newCart));
     }
   }
+  useEffect(() => {
+    const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCart(savedCartItems);
+    const savedFavItems = JSON.parse(localStorage.getItem("favItems")) || [];
+    setFavourite(savedFavItems);
+    const savedTotalPrice = JSON.parse(localStorage.getItem("totalPrice")) || '';
+    setTotalPrice(savedTotalPrice);
+    const savedPrice = JSON.parse(localStorage.getItem("prices")) || "";
+    setPrice(savedPrice);
+    const savedCount = JSON.parse(localStorage.getItem("count")) || "";
+    setCount(savedCount);
+
+  }, []);
+
   const handleCountPlus = (id) => {
     let currentCount = count[id] || 0
     let newCount = currentCount + 1
@@ -114,6 +120,14 @@ function App() {
       ...prevCount,
       [id]: newCount,
     }))
+    const updatedCount = {
+      ...count,
+      [id]: newCount,
+    };
+    localStorage.setItem(
+      "count",
+      JSON.stringify(updatedCount)
+    );
   }
   const handleCountMinus = (id) => {
     let currentCount = count[id] || 1
@@ -125,6 +139,14 @@ function App() {
         ...prevCount,
         [id]: newCount,
       }))
+      const updatedCount = {
+        ...count,
+        [id]: newCount,
+      };
+      localStorage.setItem(
+        "count",
+        JSON.stringify(updatedCount)
+      );
     }
   }
   useEffect(() => {
@@ -135,6 +157,10 @@ function App() {
       newPrices[id] = newPrice.toFixed(2)            
     })
     setPrice(newPrices)
+        localStorage.setItem(
+          "totalPrice",
+          JSON.stringify(newPrices)
+        );
   },[cart, count])
 
   useEffect(() => {
@@ -143,6 +169,7 @@ function App() {
       newTotalPrice += parseFloat(itemPrice);
     });
     setTotalPrice(newTotalPrice.toFixed(2));
+    localStorage.setItem("totalPrice", JSON.stringify(newTotalPrice.toFixed(2)));
   }, [price]);
 
   const handleDelete = (cartId) => {

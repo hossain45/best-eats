@@ -30,18 +30,18 @@ const Food = () => {
             <div className="flex justify-center items-center gap-2">
               <p>
                 <span
-                  onClick={() => handleCart(food)}
-                  className="border-2 border-orange-500 text-orange-500 p-1 rounded-lg hover:bg-orange-600 hover:text-white cursor-pointer"
-                >
-                  Order Now
-                </span>
-              </p>
-              <p>
-                <span
                   onClick={() => handleFavourite(food)}
                   className="border-2 border-orange-500 text-orange-500 p-1 rounded-lg hover:bg-orange-600 hover:text-white cursor-pointer"
                 >
                   Favourite
+                </span>
+              </p>
+              <p>
+                <span
+                  onClick={() => handleCart(food)}
+                  className="border-2 border-orange-500 text-orange-500 p-1 rounded-lg hover:bg-orange-600 hover:text-white cursor-pointer"
+                >
+                  Order Now
                 </span>
               </p>
             </div>
