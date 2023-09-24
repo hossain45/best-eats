@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HandleCartContext, FavouriteItemsContext } from "../App";
 import { Link } from "react-router-dom";
 
@@ -6,11 +6,18 @@ const Favourite = () => {
 
   const handleCart = useContext(HandleCartContext);
   const favouriteItems = useContext(FavouriteItemsContext);
+  
 
   return (
     <div className="max-w-[1640px] m-auto px-4 my-5 ">
       <p className="text-5xl text-center">Your Favourite FOODS!</p>
-      <div className={favouriteItems.length !== 0 ? "my-5 sm:my-10 md:my-20 grid  grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pt-4 rounded-lg" : "mb-48"}>
+      <div
+        className={
+          favouriteItems.length !== 0
+            ? "my-5 sm:my-10 md:my-20 grid  grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 rounded-lg"
+            : "hidden"
+        }
+      >
         {favouriteItems.map((food, index) => (
           <div
             key={index}
@@ -48,6 +55,18 @@ const Favourite = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className={ 
+        favouriteItems.length === 0 ? "flex flex-col justify-center items-center gap-10 py-36" : "hidden"
+      }>
+        <h1 className="text-2xl">Sorry, you haven't add anything yet!</h1>
+        <Link to="/">
+          <span
+            className="border-2 border-orange-500 text-orange-500 p-1 rounded-lg hover:bg-orange-600 hover:text-white cursor-pointer"
+          >
+            Go Home 
+          </span>
+        </Link>
       </div>
     </div>
   );

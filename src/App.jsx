@@ -17,6 +17,7 @@ function App() {
   const [totalPrice, setTotalPrice] = useState(0);
     
   const handleFavourite = (food) => {
+ 
     let newFavourite = [...favourite, food]
     const isAdded = favourite.find(
       (newFavouriteItem) => food.id === newFavouriteItem.id
@@ -54,9 +55,17 @@ function App() {
       }).showToast();
       
       setFavourite(newFavourite)
-      // localStorage.setItem('cart', JSON.stringify(cart))
+      localStorage.setItem("favItems", JSON.stringify(newFavourite));
     }
   }
+  
+  useEffect(() => {
+    const savedFavItems = JSON.parse(localStorage.getItem("favItems")) || [];
+    setFavourite(savedFavItems)
+  },[])
+  
+
+  
   const handleCart = (food) => {
     let newCart = [...cart, food]
     const isAdded = cart.find((newCartItem) => food.id === newCartItem.id)
@@ -98,7 +107,6 @@ function App() {
       // localStorage.setItem('cart', JSON.stringify(cart))
     }
   }
-
   const handleCountPlus = (id) => {
     let currentCount = count[id] || 0
     let newCount = currentCount + 1
